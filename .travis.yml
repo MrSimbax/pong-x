@@ -3,9 +3,17 @@ osx_image: xcode61
 rvm:
 - 2.1.2
 before_install:
- - chmod +x Scripts/install.sh
- - chmod +x Scripts/build.sh
+- chmod +x Scripts/install.sh
+- chmod +x Scripts/build.sh
 install:
 - ./Scripts/install.sh
 script:
 - ./Scripts/build.sh
+deploy:
+  provider: releases
+  api_key:
+    secure: fPArpLtCgnGw9gZV2cI99bDtVDUggLUdnRYFilphHoKbB4XTH2nJ1BbUUB+r8FZd1dtz1qbN3L1JUL1DUZFI/PmkKyT/5v8pT6jaZ8f730mBZMDx0sN0YnLwuB38A089XK4hheLX1ff8zFWgvYWkyB6RN5XHRY89HhdZYYfUCF/ZjQH94KuQVB2PM7rkffbMk0kxNogOc3rxrPAZVwTtxSibaT2eAZ/C9M3Z05jDlGpqOSZEjXM7rXHAZKw0EccXPMQlOSFZBXUdoQBw83fE7mHCXjyAoWeHCLHI75NCgvdZK7CroCLoFD7iEv3npES2t9kJSozVIJHz2JOX4rCAZDzbVXuc7US8hOwT4mlOGJ0fBM6Ab3imkr8eD6KrHWOYFeDNaDBXzhJmy4udUSEUOt/1Sxb/Bmbfor7q1Xo0fpHglQqK6b+gsbDlLDZysgEnUzEz9DDPfOBN7rd/XiIx0x4BmDEQl67esgpjKBKN8nMUTHjEQdgd1ig0CgGxqB42fQApZZL5XDow9bPoD4cNDnLb1lSAb0k5EePMDeT19TKXrFHPjO6g31xHkKdMbn9x9QgpGPspwskl3vg1b6mUykkMNW+VRWsemLMOwN+MuuozCp6le7TLq5YVWOh6/fbfXaXZOAsB6jagOHqGBSBDCq77lqnPZ+9njrUEziHTgQA=
+  file: pong-x-win32-bin.zip
+  on:
+    tags: true
+  skip_cleanup: yes
