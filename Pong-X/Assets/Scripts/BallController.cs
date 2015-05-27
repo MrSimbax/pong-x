@@ -8,11 +8,22 @@ public class BallController : MonoBehaviour
     public float playerSpeedMargin = 0.5f;
 
     private Rigidbody2D rigidbody;
+    private Vector2 initialPosition;
+
+    public delegate void ReachEndAction();
+    public static event ReachEndAction OnReachedEnd;
 
 	void Start ()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        initialPosition = transform.position;
 	}
+
+    public void Reset()
+    {
+        rigidbody.velocity = new Vector2(0.0f, 0.0f);
+        transform.position = initialPosition;
+    }
 
     public void InitVelocity()
     {
@@ -32,6 +43,11 @@ public class BallController : MonoBehaviour
                                             collision.collider.bounds.size.y);
             float xVelocity = CalcXVelocityOnHit(collision, collision.gameObject.GetComponent<PlayerController>().speed);
             rigidbody.velocity = new Vector2(xVelocity, hitPos * speed);
+        }
+
+        if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
+        {
+            OnReachedEnd();
         }
     }
 
