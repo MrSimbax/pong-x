@@ -46,6 +46,6 @@ zip -r $project-win.zip ./$project-win
 echo 'Packing OSX build...'
 zip -r $project-osx.zip ./$project-osx
 echo 'Packing Linux build...'
-zip -r $project-x-lin.zip ./$project-lin
+zip -r $project-lin.zip ./$project-lin
 echo 'Zip files are ready to deploy.'
 cd ..
