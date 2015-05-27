@@ -11,8 +11,8 @@ echo "Attempting to build $project for Windows"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath "$(pwd)/Pong-X" \
-  -buildWindowsPlayer "$(pwd)/Build/pong-x-win/$project.exe" \
+  -projectPath "$(pwd)/$project" \
+  -buildWindowsPlayer "$(pwd)/Build/$project-win/$project.exe" \
   -quit
  
 echo "Attempting to build $project for OS X"
@@ -21,8 +21,8 @@ echo "Attempting to build $project for OS X"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath "$(pwd)/Pong-X" \
-  -buildOSXUniversalPlayer "$(pwd)/Build/pong-x-osx/$project.app" \
+  -projectPath "$(pwd)/$project" \
+  -buildOSXUniversalPlayer "$(pwd)/Build/$project-osx/$project.app" \
   -quit
  
 echo "Attempting to build $project for Linux"
@@ -31,8 +31,8 @@ echo "Attempting to build $project for Linux"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath "$(pwd)/Pong-X" \
-  -buildLinuxUniversalPlayer "$(pwd)/Build/pong-x-lin/$project" \
+  -projectPath "$(pwd)/$project" \
+  -buildLinuxUniversalPlayer "$(pwd)/Build/$project-lin/$project" \
   -quit
  
 echo 'Logs from build'
@@ -41,11 +41,11 @@ cat $(pwd)/unity.log
 echo 'Packing the build files to zip files'
 cd $(pwd)/Build/
 echo 'Packing Windows build...'
-zip -r pong-x-win.zip ./pong-x-win
-rm -r *.pdb
+rm ./$project-win/*.pdb
+zip -r $project-win.zip ./$project-win
 echo 'Packing OSX build...'
-zip -r pong-x-osx.zip ./pong-x-osx
+zip -r $project-osx.zip ./$project-osx
 echo 'Packing Linux build...'
-zip -r pong-x-lin.zip ./pong-x-lin
+zip -r $project-x-lin.zip ./$project-lin
 echo 'Zip files are ready to deploy.'
 cd ..
