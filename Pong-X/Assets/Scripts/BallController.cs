@@ -17,7 +17,9 @@ public class BallController : MonoBehaviour
 
     void InitVelocity()
     {
-        rigidbody.velocity = Vector2.right * speed;
+        float x = Random.value;
+        float y = Random.value;
+        rigidbody.velocity = new Vector2(x, y) * speed;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
