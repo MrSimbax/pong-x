@@ -1,8 +1,8 @@
 # ---------------[ Unity generated ]------------------ #
-Temp/
-Obj/
-UnityGenerated/
-Library/
+[Tt]emp/
+[Oo]bj/
+[Ll]ibrary/
+sysinfo.txt
  
 # ----[ Visual Studio / MonoDevelop generated ]------- #
  
@@ -28,5 +28,5 @@ ehthumbs.db
 Thumbs.db
 
 # --------------------[ Other ]------------------------ #
-build/
-bin/
+[Bb]uild/
+[Bb]in/
