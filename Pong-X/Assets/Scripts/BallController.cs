@@ -12,13 +12,14 @@ public class BallController : MonoBehaviour
 	void Start ()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        InitVelocity();
 	}
 
-    void InitVelocity()
+    public void InitVelocity()
     {
-        float x = Random.value;
-        float y = Random.value;
+        float sign_x = Random.value > 0.5f ? -1.0f : 1.0f;
+        float sign_y = Random.value > 0.5f ? -1.0f : 1.0f;
+        float x = Random.value * sign_x;
+        float y = Random.value * sign_y;
         rigidbody.velocity = new Vector2(x, y) * speed;
     }
 
