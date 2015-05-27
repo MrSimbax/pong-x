@@ -11,7 +11,7 @@ echo "Attempting to build $project for Windows"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath $(pwd) \
+  -projectPath "$(pwd)/Pong-X" \
   -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" \
   -quit
  
@@ -21,7 +21,7 @@ echo "Attempting to build $project for OS X"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath $(pwd) \
+  -projectPath "$(pwd)/Pong-X" \
   -buildOSXUniversalPlayer "$(pwd)/Build/osx/$project.app" \
   -quit
  
@@ -31,8 +31,8 @@ echo "Attempting to build $project for Linux"
   -nographics \
   -silent-crashes \
   -logFile $(pwd)/unity.log \
-  -projectPath $(pwd) \
-  -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" \
+  -projectPath "$(pwd)/Pong-X" \
+  -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project" \
   -quit
  
 echo 'Logs from build'
