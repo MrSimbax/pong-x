@@ -370,6 +370,8 @@ GameObject:
   - 4: {fileID: 453627712}
   - 212: {fileID: 453627711}
   - 61: {fileID: 453627710}
+  - 50: {fileID: 453627713}
+  - 114: {fileID: 453627714}
   m_Layer: 0
   m_Name: PlayerLeft
   m_TagString: Untagged
@@ -428,6 +430,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 190084253}
   m_RootOrder: 0
+--- !u!50 &453627713
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 453627709}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!114 &453627714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 453627709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40431e24b45d5541a41c529cd752c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 70
+  axis: VerticalLeft
 --- !u!1 &575256326
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +881,8 @@ GameObject:
   - 4: {fileID: 1647178126}
   - 212: {fileID: 1647178128}
   - 61: {fileID: 1647178127}
+  - 50: {fileID: 1647178129}
+  - 114: {fileID: 1647178130}
   m_Layer: 0
   m_Name: PlayerRight
   m_TagString: Untagged
@@ -909,6 +941,34 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9c9884293d719a84c9b0541cc4b47b7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!50 &1647178129
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1647178125}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!114 &1647178130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1647178125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40431e24b45d5541a41c529cd752c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 70
+  axis: VerticalRight
 --- !u!1 &1725372034
 GameObject:
   m_ObjectHideFlags: 0
