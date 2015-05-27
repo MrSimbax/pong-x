@@ -372,9 +372,9 @@ GameObject:
   - 61: {fileID: 453627710}
   - 50: {fileID: 453627713}
   - 114: {fileID: 453627714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerLeft
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -883,9 +883,9 @@ GameObject:
   - 61: {fileID: 1647178127}
   - 50: {fileID: 1647178129}
   - 114: {fileID: 1647178130}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerRight
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
