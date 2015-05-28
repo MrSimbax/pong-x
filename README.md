@@ -4,7 +4,7 @@ Pong-X is a Pong game made with Unity3D.
 
 # Releases #
 
-New releases are automatically uploaded by [Travis](http://travis-ci.com). They are built only if a tagged commit was pushed to the master branch. Currently the following platforms are built:
+New releases are automatically uploaded by [Travis](http://travis-ci.com). They are built only if a tagged commit was pushed to the master branch. Currently the following platforms are supported:
 
 - Windows
 - Linux
