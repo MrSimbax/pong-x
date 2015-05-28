@@ -17,20 +17,35 @@ public class PlayerController : MonoBehaviour
     public void Reset()
     {
         transform.position = initialPosition;
-        Pause();
+        rigidbody.velocity = new Vector2(0.0f, 0.0f);
+        score = 0;
+        paused = false;
     }
 
     public void Pause()
     {
-        previousVelocity = rigidbody.velocity;
-        rigidbody.velocity = new Vector2(0.0f, 0.0f);
-        paused = true;
+        if (!paused)
+        {
+            previousVelocity = rigidbody.velocity;
+            paused = true;
+        }
+        else
+        {
+            Debug.LogWarning("Player is already paused!");
+        }
     }
 
     public void Resume()
     {
-        rigidbody.velocity = previousVelocity;
-        paused = false;
+        if (paused)
+        {
+            rigidbody.velocity = previousVelocity;
+            paused = false;
+        }
+        else
+        {
+            Debug.LogWarning("Player is not paused!");
+        }
     }
 
     void Start()

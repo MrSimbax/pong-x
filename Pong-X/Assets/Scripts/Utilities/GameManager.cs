@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public enum Gamestate
     {
         NOT_STARTED,
+        PAUSED,
         PLAYING,
         WIN
     };
@@ -23,6 +24,16 @@ public class GameManager : MonoBehaviour
     public BallController ball;
 
     public int winScore = 10;
+
+    private string _winner;
+
+    public string winner
+    {
+        get
+        {
+            return _winner;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -51,11 +62,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (gamestate == Gamestate.WIN)
-        {
-            EndGame();
-        }
-
         if (Input.GetButtonDown(exitButton))
         {
             ExitGame();
@@ -78,26 +84,57 @@ public class GameManager : MonoBehaviour
         BallController.OnReachedEnd -= Goal;
         if (ball.transform.position.x < playerLeft.transform.position.x)
         {
-            playerLeft.score += 1;
+            playerRight.score += 1;
         }
         else
         {
-            playerRight.score += 1;
+            playerLeft.score += 1;
         }
         if (playerLeft.score >= winScore || playerRight.score >= winScore)
         {
-            gamestate = Gamestate.WIN;
+            EndGame();
             return;
         }
         ball.Reset();
         gamestate = Gamestate.NOT_STARTED;
     }
 
-    void EndGame()
+    public void PauseGame()
     {
         ball.Pause();
         playerLeft.Pause();
         playerRight.Pause();
+        gamestate = Gamestate.PAUSED;
+    }
+
+    public void ResumeGame()
+    {
+        ball.Resume();
+        playerLeft.Resume();
+        playerRight.Resume();
+        gamestate = Gamestate.PLAYING;
+    }
+
+    public void RestartGame()
+    {
+        ball.Reset();
+        playerLeft.Reset();
+        playerRight.Reset();
+        gamestate = Gamestate.NOT_STARTED;
+    }
+
+    void EndGame()
+    {
+        PauseGame();
+        if (playerLeft.score > playerRight.score)
+        {
+            _winner = "Left player";
+        }
+        else
+        {
+            _winner = "Right player";
+        }
+        gamestate = Gamestate.WIN;
     }
 
     void SwitchFullScreen()

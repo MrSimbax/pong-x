@@ -23,7 +23,7 @@ public class BallController : MonoBehaviour
     public void Reset()
     {
         transform.position = initialPosition;
-        Pause();
+        rigidbody.velocity = new Vector2(0.0f, 0.0f);
     }
 
     public void Pause()
@@ -74,7 +74,7 @@ public class BallController : MonoBehaviour
 
     float CalcXVelocityOnHit(Collision2D collision, float playerSpeed)
     {
-        // Let players control speed of the ball
+        // Let players control the speed of the ball
         float x = rigidbody.velocity.x;
         float playerY = collision.rigidbody.velocity.y /  playerSpeed;
         if (playerY > playerSpeedMargin)
