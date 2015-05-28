@@ -19,6 +19,7 @@ deploy:
     - ./Build/Pong-X-osx.zip
   on:
     tags: true
+    all_branches: true
   skip_cleanup: yes
 notifications:
   email:
