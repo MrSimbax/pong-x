@@ -1,8 +1,5 @@
 #! /bin/sh
- 
-# Example build script for Unity3D project. See the entire example: https://github.com/JonathanPorta/ci-build
- 
-# Change this the name of your project. This will be the name of the final executables as well.
+
 project="Pong-X"
  
 echo "Attempting to build $project for Windows"
@@ -39,13 +36,28 @@ echo 'Logs from build'
 cat $(pwd)/unity.log
 
 echo 'Packing the build files to zip files'
-cd $(pwd)/Build/
-echo 'Packing Windows build...'
+
+echo 'Generating README and VERSION files...'
+cp README.md Build/$project-win/README.txt
+cp README.md Build/$project-lin/README.txt
+cp README.md Build/$project-osx/README.txt
+git describe --long > Build/$project-win/VERSION.txt
+git describe --long > Build/$project-lin/VERSION.txt
+git describe --long > Build/$project-osx/VERSION.txt
+
+cd Build
+
+echo 'Removing debug files...'
 rm ./$project-win/*.pdb
+
+echo 'Packing Windows build...'
 zip -r $project-win.zip ./$project-win
+
 echo 'Packing OSX build...'
-zip -r $project-osx.zip ./$project-osx
+zip -r $project-osx.zip ./$project-lin
+
 echo 'Packing Linux build...'
-zip -r $project-lin.zip ./$project-lin
-echo 'Zip files are ready to deploy.'
+zip -r $project-lin.zip ./$project-osx
+
 cd ..
+echo 'Zip files are ready to deploy.'
