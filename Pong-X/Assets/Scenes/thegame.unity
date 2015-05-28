@@ -914,10 +914,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamestate: 0
-  startButton: Jump
+  startButton: Start
+  exitButton: Exit
+  fullscreenButton: Fullscreen
   playerLeft: {fileID: 453627714}
   playerRight: {fileID: 1647178130}
   ball: {fileID: 1236433427}
+  winScore: 10
 --- !u!4 &1604674852
 Transform:
   m_ObjectHideFlags: 0

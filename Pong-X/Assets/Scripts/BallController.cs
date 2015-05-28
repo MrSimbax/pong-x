@@ -9,6 +9,7 @@ public class BallController : MonoBehaviour
 
     private Rigidbody2D rigidbody;
     private Vector2 initialPosition;
+    private Vector2 previousVelocity;
 
     public delegate void ReachEndAction();
     public static event ReachEndAction OnReachedEnd;
@@ -21,8 +22,19 @@ public class BallController : MonoBehaviour
 
     public void Reset()
     {
-        rigidbody.velocity = new Vector2(0.0f, 0.0f);
         transform.position = initialPosition;
+        Pause();
+    }
+
+    public void Pause()
+    {
+        previousVelocity = rigidbody.velocity;
+        rigidbody.velocity = new Vector2(0.0f, 0.0f);
+    }
+
+    public void Resume()
+    {
+        rigidbody.velocity = previousVelocity;
     }
 
     public void InitVelocity()
