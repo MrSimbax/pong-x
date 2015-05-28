@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public enum Gamestate
     {
         NOT_STARTED,
+        PAUSED,
         PLAYING,
         WIN
     };
@@ -23,6 +24,16 @@ public class GameManager : MonoBehaviour
     public BallController ball;
 
     public int winScore = 10;
+
+    private string _winner;
+
+    public string winner
+    {
+        get
+        {
+            return winner;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -49,11 +60,6 @@ public class GameManager : MonoBehaviour
                 StartGame();
                 gamestate = Gamestate.PLAYING;
             }
-        }
-
-        if (gamestate == Gamestate.WIN)
-        {
-            EndGame();
         }
 
         if (Input.GetButtonDown(exitButton))
@@ -86,18 +92,49 @@ public class GameManager : MonoBehaviour
         }
         if (playerLeft.score >= winScore || playerRight.score >= winScore)
         {
-            gamestate = Gamestate.WIN;
+            EndGame();
             return;
         }
         ball.Reset();
         gamestate = Gamestate.NOT_STARTED;
     }
 
-    void EndGame()
+    public void PauseGame()
     {
         ball.Pause();
         playerLeft.Pause();
         playerRight.Pause();
+        gamestate = Gamestate.PAUSED;
+    }
+
+    public void ResumeGame()
+    {
+        ball.Resume();
+        playerLeft.Resume();
+        playerRight.Resume();
+        gamestate = Gamestate.PLAYING;
+    }
+
+    public void RestartGame()
+    {
+        ball.Reset();
+        playerLeft.Reset();
+        playerRight.Reset();
+        gamestate = Gamestate.NOT_STARTED;
+    }
+
+    void EndGame()
+    {
+        PauseGame();
+        if (playerLeft.score > playerRight.score)
+        {
+            _winner = "Left player";
+        }
+        else
+        {
+            _winner = "Right player";
+        }
+        gamestate = Gamestate.WIN;
     }
 
     void SwitchFullScreen()
