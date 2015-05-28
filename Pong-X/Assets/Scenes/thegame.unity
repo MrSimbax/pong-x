@@ -1349,7 +1349,7 @@ MonoBehaviour:
   playerLeft: {fileID: 453627714}
   playerRight: {fileID: 1647178130}
   ball: {fileID: 1236433427}
-  winScore: 1
+  winScore: 10
 --- !u!4 &1604674852
 Transform:
   m_ObjectHideFlags: 0
