@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            return winner;
+            return _winner;
         }
     }
 

@@ -892,6 +892,7 @@ GameObject:
   - 224: {fileID: 994159302}
   - 222: {fileID: 994159304}
   - 114: {fileID: 994159303}
+  - 114: {fileID: 994159305}
   m_Layer: 5
   m_Name: Winner
   m_TagString: Untagged
@@ -948,6 +949,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 994159301}
+--- !u!114 &994159305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994159301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ce5861789b9434596e06fe0b0e8529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1604674851}
 --- !u!1 &1236433422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,7 +1349,7 @@ MonoBehaviour:
   playerLeft: {fileID: 453627714}
   playerRight: {fileID: 1647178130}
   ball: {fileID: 1236433427}
-  winScore: 10
+  winScore: 1
 --- !u!4 &1604674852
 Transform:
   m_ObjectHideFlags: 0

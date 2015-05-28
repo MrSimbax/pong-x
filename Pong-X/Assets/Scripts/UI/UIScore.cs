@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 
 [RequireComponent (typeof(Text))]
-public class UIScore : MonoBehaviour {
+public class UIScore : MonoBehaviour
+{
 
     public PlayerController player;
 
