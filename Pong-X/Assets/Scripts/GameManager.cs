@@ -84,11 +84,11 @@ public class GameManager : MonoBehaviour
         BallController.OnReachedEnd -= Goal;
         if (ball.transform.position.x < playerLeft.transform.position.x)
         {
-            playerLeft.score += 1;
+            playerRight.score += 1;
         }
         else
         {
-            playerRight.score += 1;
+            playerLeft.score += 1;
         }
         if (playerLeft.score >= winScore || playerRight.score >= winScore)
         {
