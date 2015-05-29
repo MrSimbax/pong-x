@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
+    [Range(0.0f, 1000.0f)] public float speed = 10.0f;
     public string axis = "Vertical";
 
     [HideInInspector] public int score;

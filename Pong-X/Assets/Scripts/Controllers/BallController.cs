@@ -4,8 +4,8 @@ using System.Collections;
 [RequireComponent (typeof(Rigidbody2D))]
 public class BallController : MonoBehaviour
 {
-    public float speed = 50.0f;
-    public float playerSpeedMargin = 0.5f;
+    [Range(0.0f, 1000.0f)] public float speed = 50.0f;
+    [Range(0.0f, 1.0f)] public float playerSpeedMargin = 0.5f;
 
     private new Rigidbody2D rigidbody;
     private Vector2 initialPosition;

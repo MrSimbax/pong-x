@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerRight;
     public BallController ball;
 
-    public int winScore = 10;
+    [Range(1.0f, 98.0f)] public int winScore = 10;
 
     private string _winner;
 
