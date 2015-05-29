@@ -9,7 +9,7 @@ public class ScreenAdjuster : MonoBehaviour
 
     private Vector2 lastScreenSize;
     private Vector2 currentScreenSize;
-    private Camera camera;
+    private new Camera camera;
     private float originalSize;
 
     void Start()

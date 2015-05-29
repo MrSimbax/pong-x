@@ -7,7 +7,7 @@ public class BallController : MonoBehaviour
     public float speed = 50.0f;
     public float playerSpeedMargin = 0.5f;
 
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
 

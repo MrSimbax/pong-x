@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public int score;
 
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
     private bool paused;
