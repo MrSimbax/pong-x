@@ -1,11 +1,14 @@
 using UnityEngine;
 
-[RequireComponent (typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class BallController : MonoBehaviour
 {
     public float speed;
+    public float maxVelocityComponents;
 
     private new Rigidbody2D rigidbody;
+    private new BoxCollider2D collider;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
 
@@ -15,6 +18,7 @@ public class BallController : MonoBehaviour
 	void Start ()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<BoxCollider2D>();
         initialPosition = transform.position;
 	}
 
@@ -43,6 +47,11 @@ public class BallController : MonoBehaviour
         rigidbody.velocity = new Vector2(x, y) * speed;
     }
 
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -60,8 +69,14 @@ public class BallController : MonoBehaviour
             //
             // Equation works in each dimension.
 
-             rigidbody.velocity = new Vector2(rigidbody.velocity.x + collision.rigidbody.velocity.x,
-                                              rigidbody.velocity.y + collision.rigidbody.velocity.y);
+            float x = rigidbody.velocity.x + collision.rigidbody.velocity.x;
+            float y = rigidbody.velocity.y + collision.rigidbody.velocity.y;
+
+            // It won't be fun if the ball is too fast
+            x = Mathf.Sign(x) * Mathf.Clamp(Mathf.Abs(x), 0.0f, maxVelocityComponents);
+            y = Mathf.Sign(y) * Mathf.Clamp(Mathf.Abs(y), 0.0f, maxVelocityComponents);
+
+            rigidbody.velocity = new Vector2(x, y);
         }
 
         if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
@@ -70,11 +85,13 @@ public class BallController : MonoBehaviour
         }
     }
 
-    float CalcHitPosition(Vector2 ballPos, Vector2 playerPos, float playerHeight)
+    bool CheckHitHorizontalEdge(Collision2D collision)
     {
-        // 1 - an upper edge of the player
-        // 0 - a middle point of the player
-        // -1 - a bottom edge of the player
-        return (ballPos.y - playerPos.y) / playerHeight;
+        Bounds ball_bounds = collider.bounds;
+        Bounds pad_bounds = collision.collider.bounds;
+        return !(
+            ball_bounds.max.y <= pad_bounds.min.y ||
+            ball_bounds.min.y >= pad_bounds.max.y
+        );
     }
 }
