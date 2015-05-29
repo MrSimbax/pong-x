@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (gamestate == Gamestate.NOT_STARTED)
             WaitForStartGame();
 
-        if (gamestate != Gamestate.NOT_STARTED && Input.GetButtonDown(resetButton))
+        if (Input.GetButtonDown(resetButton))
             ResetGame();
 
         if (Input.GetButtonDown(exitButton))
