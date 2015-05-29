@@ -16,7 +16,6 @@ public class ScreenAdjuster : MonoBehaviour
     {
         camera = GetComponent<Camera>();
         lastScreenSize = currentScreenSize = new Vector2(Screen.width, Screen.height);
-        originalSize = camera.orthographicSize;
         Adjust();
     }
 

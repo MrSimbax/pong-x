@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 5
+  m_DynamicPixelsPerUnit: 15
 --- !u!223 &1422422041
 Canvas:
   m_ObjectHideFlags: 0
@@ -1396,7 +1396,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 40.0354004
+  orthographic size: 40
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
