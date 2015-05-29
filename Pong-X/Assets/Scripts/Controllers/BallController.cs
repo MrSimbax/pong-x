@@ -4,8 +4,7 @@ using System.Collections;
 [RequireComponent (typeof(Rigidbody2D))]
 public class BallController : MonoBehaviour
 {
-    [Range(0.0f, 1000.0f)] public float speed = 50.0f;
-    [Range(0.0f, 1.0f)] public float playerSpeedMargin = 0.5f;
+    public float speed;
 
     private new Rigidbody2D rigidbody;
     private Vector2 initialPosition;
@@ -28,6 +27,7 @@ public class BallController : MonoBehaviour
 
     public void Pause()
     {
+        // Immediately stop
         previousVelocity = rigidbody.velocity;
         rigidbody.velocity = new Vector2(0.0f, 0.0f);
     }
@@ -39,10 +39,8 @@ public class BallController : MonoBehaviour
 
     public void InitVelocity()
     {
-        float sign_x = Random.value > 0.5f ? -1.0f : 1.0f;
-        float sign_y = Random.value > 0.5f ? -1.0f : 1.0f;
-        float x = Random.value * sign_x;
-        float y = Random.value * sign_y;
+        float x = Random.value > 0.5f ? -1.0f : 1.0f;
+        float y = Random.value * (Random.value > 0.5f ? -1.0f : 1.0f);
         rigidbody.velocity = new Vector2(x, y) * speed;
     }
 
@@ -50,11 +48,21 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            float hitPos = CalcHitPosition(transform.position,
-                                            collision.transform.position, 
-                                            collision.collider.bounds.size.y);
-            float xVelocity = CalcXVelocityOnHit(collision, collision.gameObject.GetComponent<PlayerController>().speed);
-            rigidbody.velocity = new Vector2(xVelocity, hitPos * speed);
+            // Assume the ball and the pad have the same mass
+            // A momentum conservation law holds
+            // 
+            // m * ball_velocity + m * pad_velocity = m * ball_velocity_after + m * pad_velocity_after
+            // ball_velocity + pad_velocity = ball_velocity_after + pad_velocity_after
+            // 
+            // The pad is still moving after collision because of external force (the player input),
+            // so we can assume that pad_velocity_after = 0
+            //
+            // ball_velocity + pad_velocity = ball_velocity_after
+            //
+            // Equation works in each dimension.
+
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x + collision.rigidbody.velocity.x,
+                                             rigidbody.velocity.y + collision.rigidbody.velocity.y);
         }
 
         if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
@@ -65,22 +73,9 @@ public class BallController : MonoBehaviour
 
     float CalcHitPosition(Vector2 ballPos, Vector2 playerPos, float playerHeight)
     {
-        // Returns a value from -1 to 1
         // 1 - an upper edge of the player
         // 0 - a middle point of the player
         // -1 - a bottom edge of the player
         return (ballPos.y - playerPos.y) / playerHeight;
-    }
-
-    float CalcXVelocityOnHit(Collision2D collision, float playerSpeed)
-    {
-        // Let players control the speed of the ball
-        float x = rigidbody.velocity.x;
-        float playerY = collision.rigidbody.velocity.y /  playerSpeed;
-        if (playerY > playerSpeedMargin)
-        {
-            x = playerY * speed;
-        }
-        return x;
     }
 }

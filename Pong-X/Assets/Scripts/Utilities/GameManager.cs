@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
     void Goal()
     {
         BallController.OnReachedEnd -= Goal;
+
         if (ball.transform.position.x < playerLeft.transform.position.x)
         {
             playerRight.score += 1;
@@ -90,11 +91,13 @@ public class GameManager : MonoBehaviour
         {
             playerLeft.score += 1;
         }
+
         if (playerLeft.score >= winScore || playerRight.score >= winScore)
         {
             EndGame();
             return;
         }
+
         ball.Reset();
         gamestate = Gamestate.NOT_STARTED;
     }

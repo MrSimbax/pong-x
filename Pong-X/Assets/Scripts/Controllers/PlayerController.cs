@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         if (!paused)
         {
             previousVelocity = rigidbody.velocity;
+            rigidbody.velocity = new Vector2(0.0f, 0.0f);
             paused = true;
         }
         else
