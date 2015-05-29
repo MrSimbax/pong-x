@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class GameManager : MonoBehaviour
         PLAYING,
         WIN
     };
-
+    
     [HideInInspector]
     public Gamestate gamestate;
 
