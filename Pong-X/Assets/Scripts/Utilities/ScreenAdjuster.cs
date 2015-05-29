@@ -6,11 +6,11 @@ using System.Collections;
 public class ScreenAdjuster : MonoBehaviour
 {
     public float targetAspect;
+    public float originalSize;
 
     private Vector2 lastScreenSize;
     private Vector2 currentScreenSize;
     private new Camera camera;
-    private float originalSize;
 
     void Start()
     {
