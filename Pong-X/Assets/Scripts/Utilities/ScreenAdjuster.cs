@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(Camera))]
+[ExecuteInEditMode]
 public class ScreenAdjuster : MonoBehaviour
 {
     public float targetAspect;
