@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 60
-  maxVelocityComponents: 90
+  maxSpeed: 100
 --- !u!1 &1336887027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,7 +1397,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 40.0066643
+  orthographic size: 40.0222931
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

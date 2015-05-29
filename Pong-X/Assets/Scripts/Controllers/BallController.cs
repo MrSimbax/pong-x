@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public float speed;
-    public float maxVelocityComponents;
+    public float maxSpeed;
 
     private new Rigidbody2D rigidbody;
     private new BoxCollider2D collider;
@@ -20,17 +20,20 @@ public class BallController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         initialPosition = transform.position;
+        Mathf.Clamp(speed, 0.0f, maxSpeed);
 	}
 
     public void Reset()
     {
         transform.position = initialPosition;
         rigidbody.velocity = new Vector2(0.0f, 0.0f);
+        rigidbody.simulated = true;
     }
 
     public void Pause()
     {
         // Immediately stop
+        rigidbody.simulated = false;
         previousVelocity = rigidbody.velocity;
         rigidbody.velocity = new Vector2(0.0f, 0.0f);
     }
@@ -68,8 +71,8 @@ public class BallController : MonoBehaviour
             float y = rigidbody.velocity.y + collision.rigidbody.velocity.y;
 
             // It won't be fun if the ball is too fast
-            x = Mathf.Sign(x) * Mathf.Clamp(Mathf.Abs(x), 0.0f, maxVelocityComponents);
-            y = Mathf.Sign(y) * Mathf.Clamp(Mathf.Abs(y), 0.0f, maxVelocityComponents);
+            x = Mathf.Sign(x) * Mathf.Clamp(Mathf.Abs(x), 0.0f, maxSpeed);
+            y = Mathf.Sign(y) * Mathf.Clamp(Mathf.Abs(y), 0.0f, maxSpeed);
 
             rigidbody.velocity = new Vector2(x, y);
         }
