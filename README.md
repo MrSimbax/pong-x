@@ -27,10 +27,11 @@ You can see "change logs" in a commit history. Generally, until version 1.0.0, a
 Currrently, you can't change the controls in releases.
 
 - Escape - exit
-- Space - start
+- Space - start round
 - F - fullscreen mode on/off
 - W and S - left player controls
 - Up and Down arrow keys - right player controls
+- R - reset game
 
 # Project website #
 

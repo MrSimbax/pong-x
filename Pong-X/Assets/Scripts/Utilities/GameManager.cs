@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Gamestate gamestate;
 
     public string startButton;
+    public string resetButton;
     public string exitButton;
     public string fullscreenButton;
 
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerRight;
     public BallController ball;
 
-    [Range(1.0f, 98.0f)] public int winScore = 10;
+    [Range(1.0f, 98.0f)] public int winScore;
 
     private string _winner;
 
@@ -49,22 +50,24 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown(fullscreenButton))
-        {
             SwitchFullScreen();
-        }
 
         if (gamestate == Gamestate.NOT_STARTED)
-        {
-            if (Input.GetButtonDown(startButton))
-            {
-                StartGame();
-                gamestate = Gamestate.PLAYING;
-            }
-        }
+            WaitForStartGame();
+
+        if (gamestate != Gamestate.NOT_STARTED && Input.GetButtonDown(resetButton))
+            ResetGame();
 
         if (Input.GetButtonDown(exitButton))
-        {
             ExitGame();
+    }
+
+    void WaitForStartGame()
+    {
+        if (Input.GetButtonDown(startButton))
+        {
+            StartGame();
+            gamestate = Gamestate.PLAYING;
         }
     }
 
@@ -72,6 +75,14 @@ public class GameManager : MonoBehaviour
     {
         ball.InitVelocity();
         BallController.OnReachedEnd += Goal;
+    }
+
+    void ResetGame()
+    {
+        ball.Reset();
+        playerLeft.Reset();
+        playerRight.Reset();
+        gamestate = Gamestate.NOT_STARTED;
     }
 
     void ExitGame()

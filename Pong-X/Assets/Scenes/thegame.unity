@@ -1316,6 +1316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamestate: 0
   startButton: Start
+  resetButton: Reset
   exitButton: Exit
   fullscreenButton: Fullscreen
   playerLeft: {fileID: 453627714}

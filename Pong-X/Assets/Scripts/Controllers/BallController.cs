@@ -61,8 +61,8 @@ public class BallController : MonoBehaviour
             //
             // Equation works in each dimension.
 
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x + collision.rigidbody.velocity.x,
-                                             rigidbody.velocity.y + collision.rigidbody.velocity.y);
+             rigidbody.velocity = new Vector2(rigidbody.velocity.x + collision.rigidbody.velocity.x,
+                                              rigidbody.velocity.y + collision.rigidbody.velocity.y);
         }
 
         if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
