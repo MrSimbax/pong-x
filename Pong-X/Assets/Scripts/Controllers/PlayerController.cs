@@ -1,15 +1,14 @@
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public string axis = "Vertical";
+    [Range(0.0f, 1000.0f)] public float speed;
+    public string axis;
 
     [HideInInspector] public int score;
 
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
     private bool paused;
@@ -27,6 +26,7 @@ public class PlayerController : MonoBehaviour
         if (!paused)
         {
             previousVelocity = rigidbody.velocity;
+            rigidbody.velocity = new Vector2(0.0f, 0.0f);
             paused = true;
         }
         else

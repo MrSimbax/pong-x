@@ -2,7 +2,7 @@
 
 Pong-X is a Pong game made with Unity3D.
 
-![Screenshot](http://i.imgur.com/0fi5zYp.png)
+![Screenshot](http://i.imgur.com/3lbuD0E.png)
 
 # Releases #
 
@@ -27,10 +27,11 @@ You can see "change logs" in a commit history. Generally, until version 1.0.0, a
 Currrently, you can't change the controls in releases.
 
 - Escape - exit
-- Space - start
+- Space - start round
 - F - fullscreen mode on/off
 - W and S - left player controls
 - Up and Down arrow keys - right player controls
+- R - reset game
 
 # Project website #
 
@@ -38,7 +39,7 @@ https://github.com/MrSimbax/pong-x
 
 # Bug reporting #
 
-Please, provide a version number in your issue. It's a content of VERSION.txt file in the root directory where you unpacked a release.
+Bugs which I am aware of are on [the issue list](https://github.com/MrSimbax/pong-x/issues). Please, provide a version number in your issue. It's a content of VERSION.txt file in the root directory where you unpacked a release.
 
 # Development build #
 
@@ -46,7 +47,7 @@ If you want to have the newest version (may be unplayable/unstable) then checkou
 
 # Feature requests #
 
-If you have any idea how to improve the game, write an issue.
+If you have any idea on how to improve the game, write an issue.
 
 # License #
 

@@ -1,21 +1,20 @@
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent (typeof(Camera))]
+[ExecuteInEditMode]
 public class ScreenAdjuster : MonoBehaviour
 {
     public float targetAspect;
+    public float originalSize;
 
     private Vector2 lastScreenSize;
     private Vector2 currentScreenSize;
-    private Camera camera;
-    private float originalSize;
+    private new Camera camera;
 
     void Start()
     {
         camera = GetComponent<Camera>();
         lastScreenSize = currentScreenSize = new Vector2(Screen.width, Screen.height);
-        originalSize = camera.orthographicSize;
         Adjust();
     }
 

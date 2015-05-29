@@ -1,13 +1,14 @@
 using UnityEngine;
-using System.Collections;
 
-[RequireComponent (typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class BallController : MonoBehaviour
 {
-    public float speed = 50.0f;
-    public float playerSpeedMargin = 0.5f;
+    public float speed;
+    public float maxSpeed;
 
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
+    private new BoxCollider2D collider;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
 
@@ -17,17 +18,22 @@ public class BallController : MonoBehaviour
 	void Start ()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<BoxCollider2D>();
         initialPosition = transform.position;
+        Mathf.Clamp(speed, 0.0f, maxSpeed);
 	}
 
     public void Reset()
     {
         transform.position = initialPosition;
         rigidbody.velocity = new Vector2(0.0f, 0.0f);
+        rigidbody.simulated = true;
     }
 
     public void Pause()
     {
+        // Immediately stop
+        rigidbody.simulated = false;
         previousVelocity = rigidbody.velocity;
         rigidbody.velocity = new Vector2(0.0f, 0.0f);
     }
@@ -39,10 +45,8 @@ public class BallController : MonoBehaviour
 
     public void InitVelocity()
     {
-        float sign_x = Random.value > 0.5f ? -1.0f : 1.0f;
-        float sign_y = Random.value > 0.5f ? -1.0f : 1.0f;
-        float x = Random.value * sign_x;
-        float y = Random.value * sign_y;
+        float x = Random.value > 0.5f ? -1.0f : 1.0f;
+        float y = Random.value * (Random.value > 0.5f ? -1.0f : 1.0f);
         rigidbody.velocity = new Vector2(x, y) * speed;
     }
 
@@ -50,11 +54,27 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            float hitPos = CalcHitPosition(transform.position,
-                                            collision.transform.position, 
-                                            collision.collider.bounds.size.y);
-            float xVelocity = CalcXVelocityOnHit(collision, collision.gameObject.GetComponent<PlayerController>().speed);
-            rigidbody.velocity = new Vector2(xVelocity, hitPos * speed);
+            // Assume the ball and the pad have the same mass
+            // A momentum conservation law holds
+            // 
+            // m * ball_velocity + m * pad_velocity = m * ball_velocity_after + m * pad_velocity_after
+            // ball_velocity + pad_velocity = ball_velocity_after + pad_velocity_after
+            // 
+            // The pad is still moving after collision because of external force (the player input),
+            // so we can assume that pad_velocity_after = 0
+            //
+            // ball_velocity + pad_velocity = ball_velocity_after
+            //
+            // Equation works in each dimension.
+
+            float x = rigidbody.velocity.x + collision.rigidbody.velocity.x;
+            float y = rigidbody.velocity.y + collision.rigidbody.velocity.y;
+
+            // It won't be fun if the ball is too fast
+            x = Mathf.Sign(x) * Mathf.Clamp(Mathf.Abs(x), 0.0f, maxSpeed);
+            y = Mathf.Sign(y) * Mathf.Clamp(Mathf.Abs(y), 0.0f, maxSpeed);
+
+            rigidbody.velocity = new Vector2(x, y);
         }
 
         if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
@@ -63,24 +83,13 @@ public class BallController : MonoBehaviour
         }
     }
 
-    float CalcHitPosition(Vector2 ballPos, Vector2 playerPos, float playerHeight)
+    bool CheckHitHorizontalEdge(Collision2D collision)
     {
-        // Returns a value from -1 to 1
-        // 1 - an upper edge of the player
-        // 0 - a middle point of the player
-        // -1 - a bottom edge of the player
-        return (ballPos.y - playerPos.y) / playerHeight;
-    }
-
-    float CalcXVelocityOnHit(Collision2D collision, float playerSpeed)
-    {
-        // Let players control the speed of the ball
-        float x = rigidbody.velocity.x;
-        float playerY = collision.rigidbody.velocity.y /  playerSpeed;
-        if (playerY > playerSpeedMargin)
-        {
-            x = playerY * speed;
-        }
-        return x;
+        Bounds ball_bounds = collider.bounds;
+        Bounds pad_bounds = collision.collider.bounds;
+        return !(
+            ball_bounds.max.y <= pad_bounds.min.y ||
+            ball_bounds.min.y >= pad_bounds.max.y
+        );
     }
 }
