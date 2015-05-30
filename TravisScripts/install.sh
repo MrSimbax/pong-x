@@ -1,7 +1,7 @@
 #! /bin/sh
 
-echo 'Downloading from http://netstorage.unity3d.com/unity/5b98b70ebeb9/MacEditorInstaller/Unity.pkg'
-curl -O http://netstorage.unity3d.com/unity/5b98b70ebeb9/MacEditorInstaller/Unity.pkg
+echo 'Downloading from http://netstorage.unity3d.com/unity/0b02744d4013/MacEditorInstaller/Unity-5.0.2f1.pkg'
+curl -O http://netstorage.unity3d.com/unity/0b02744d4013/MacEditorInstaller/Unity-5.0.2f1.pkg
 
 echo 'Installing Unity.pkg'
 sudo installer -dumplog -package Unity.pkg -target /
