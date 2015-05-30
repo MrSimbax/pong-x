@@ -4,8 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class BallController : MonoBehaviour
 {
-    public float speed;
-    public float maxSpeed;
+    [Range(0.0f, 1000.0f)] public float speed;
+    [Range(0.0f, 1000.0f)] public float maxSpeed;
 
     private new Rigidbody2D rigidbody;
     private new BoxCollider2D collider;
