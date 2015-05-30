@@ -3,12 +3,12 @@ osx_image: xcode61
 rvm:
 - 2.1.2
 before_install:
-- chmod +x Scripts/install.sh
-- chmod +x Scripts/build.sh
+- chmod +x TravisScripts/install.sh
+- chmod +x TravisScripts/build.sh
 install:
-- ./Scripts/install.sh
+- ./TravisScripts/install.sh
 script:
-- ./Scripts/build.sh
+- ./TravisScripts/build.sh
 deploy:
   provider: releases
   api_key:
