@@ -946,6 +946,7 @@ GameObject:
   - 61: {fileID: 1236433426}
   - 50: {fileID: 1236433425}
   - 114: {fileID: 1236433427}
+  - 82: {fileID: 1236433428}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1032,6 +1033,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 60
   maxSpeed: 100
+  soundHitPlayer: {fileID: 8300000, guid: 8ef2c6ae2b6632a489b31907e33bdb77, type: 3}
+  soundHitWall: {fileID: 8300000, guid: 936682587dcf5e54188d5b8b7160097b, type: 3}
+--- !u!82 &1236433428
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236433422}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1336887027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,7 +1469,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 40.0222931
+  orthographic size: 40.0328827
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

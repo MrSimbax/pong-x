@@ -2,13 +2,17 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class BallController : MonoBehaviour
 {
     [Range(0.0f, 1000.0f)] public float speed;
     [Range(0.0f, 1000.0f)] public float maxSpeed;
+    public AudioClip soundHitPlayer;
+    public AudioClip soundHitWall;
 
     private new Rigidbody2D rigidbody;
     private new BoxCollider2D collider;
+    private AudioSource audioSource;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
 
@@ -19,6 +23,7 @@ public class BallController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
         initialPosition = transform.position;
         Mathf.Clamp(speed, 0.0f, maxSpeed);
 	}
@@ -54,6 +59,9 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            audioSource.clip = soundHitPlayer;
+            audioSource.Play();
+            
             // Assume the ball and the pad have the same mass
             // A momentum conservation law holds
             // 
@@ -75,6 +83,12 @@ public class BallController : MonoBehaviour
             y = Mathf.Sign(y) * Mathf.Clamp(Mathf.Abs(y), 0.0f, maxSpeed);
 
             rigidbody.velocity = new Vector2(x, y);
+        }
+        
+        if (collision.gameObject.tag == "WallNormal")
+        {
+            audioSource.clip = soundHitWall;
+            audioSource.Play();
         }
 
         if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
