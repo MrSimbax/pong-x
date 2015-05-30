@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
 
@@ -22,11 +23,12 @@ public class GameManager : MonoBehaviour
     public PlayerController playerLeft;
     public PlayerController playerRight;
     public BallController ball;
+    
+    public AudioClip soundWin;
 
     [Range(1.0f, 98.0f)] public int winScore;
 
     private string _winner;
-
     public string winner
     {
         get
@@ -34,15 +36,18 @@ public class GameManager : MonoBehaviour
             return _winner;
         }
     }
+    
+    private AudioSource audioSource;
 
     // Use this for initialization
     void Start()
     {
         gamestate = Gamestate.NOT_STARTED;
-        if (playerLeft == null || playerRight == null || ball == null)
+        if (playerLeft == null || playerRight == null || ball == null || soundWin == null)
         {
             throw new MissingReferenceException();
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -92,6 +97,9 @@ public class GameManager : MonoBehaviour
     void Goal()
     {
         BallController.OnReachedEnd -= Goal;
+        
+        audioSource.clip = soundWin;
+        audioSource.Play();
 
         if (ball.transform.position.x < playerLeft.transform.position.x)
         {
