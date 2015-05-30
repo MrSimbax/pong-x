@@ -60,4 +60,4 @@ echo 'Packing Linux build...'
 zip -r $project-lin.zip ./$project-osx
 
 cd ..
-echo 'Zip files are ready to deploy.'
+echo 'Zip files should be ready to deploy.'
