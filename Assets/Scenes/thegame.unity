@@ -947,6 +947,7 @@ GameObject:
   - 50: {fileID: 1236433425}
   - 114: {fileID: 1236433427}
   - 82: {fileID: 1236433428}
+  - 114: {fileID: 1236433429}
   m_Layer: 10
   m_Name: Ball
   m_TagString: Untagged
@@ -1104,6 +1105,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1236433429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236433422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74916fb5219f0004c84b66aab4ab149a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSounds:
+  - clip: {fileID: 8300000, guid: 8ef2c6ae2b6632a489b31907e33bdb77, type: 3}
+    tag: Player
+  - clip: {fileID: 8300000, guid: 936682587dcf5e54188d5b8b7160097b, type: 3}
+    tag: WallNormal
 --- !u!1 &1336887027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1557,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 40.031044
+  orthographic size: 40.0229073
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
