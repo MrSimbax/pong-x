@@ -1397,7 +1397,7 @@ MonoBehaviour:
   playerRight: {fileID: 1647178130}
   ball: {fileID: 1236433427}
   soundWin: {fileID: 8300000, guid: 240151a8db524d744a295e6c873b5976, type: 3}
-  winScore: 10
+  winScore: 11
 --- !u!4 &1604674852
 Transform:
   m_ObjectHideFlags: 0
