@@ -76,20 +76,13 @@ public class BallController : MonoBehaviour
 
             rigidbody.velocity = new Vector2(x, y);
         }
-
-        if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
+    }
+    
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "WallEnd" && OnReachedEnd != null)
         {
             OnReachedEnd();
         }
-    }
-
-    bool CheckHitHorizontalEdge(Collision2D collision)
-    {
-        Bounds ball_bounds = collider.bounds;
-        Bounds pad_bounds = collision.collider.bounds;
-        return !(
-            ball_bounds.max.y <= pad_bounds.min.y ||
-            ball_bounds.min.y >= pad_bounds.max.y
-        );
     }
 }
