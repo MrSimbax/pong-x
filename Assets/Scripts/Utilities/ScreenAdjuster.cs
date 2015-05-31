@@ -37,5 +37,9 @@ public class ScreenAdjuster : MonoBehaviour
         {
             camera.orthographicSize = originalSize / scaleHeight;
         }
+        if (scaleHeight >= 1.0f)
+        {
+            camera.orthographicSize = originalSize;
+        }
     }
 }
