@@ -21,6 +21,23 @@ public class UIStart : MonoBehaviour {
         {
             Application.LoadLevel("thegame");
         }
+        
+        if (Input.GetButtonDown("Fullscreen"))
+        {
+            if (Screen.fullScreen)
+            {
+                Screen.SetResolution(1280, 720, false);
+            }
+            else
+            {
+                Screen.fullScreen = true;
+            }
+        }
+        
+        if (Input.GetButtonDown("Exit"))
+        {
+            Application.Quit();
+        }
     }
 	
 	void HideText()
