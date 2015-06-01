@@ -2,7 +2,9 @@
 
 Pong-X is a Pong game made with Unity3D.
 
-![Screenshot](http://i.imgur.com/3lbuD0E.png)
+![Screenshot_mainmenu](http://i.imgur.com/jtzhCCZ.png)
+
+![Screenshot_game](http://i.imgur.com/54smhDU.png)
 
 # Releases #
 
