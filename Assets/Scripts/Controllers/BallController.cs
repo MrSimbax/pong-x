@@ -2,30 +2,27 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(AudioSource))]
 public class BallController : MonoBehaviour
 {
     [Range(0.0f, 1000.0f)] public float speed;
     [Range(0.0f, 1000.0f)] public float maxSpeed;
-    public AudioClip soundHitPlayer;
-    public AudioClip soundHitWall;
+    public bool initOnStart;
 
     private new Rigidbody2D rigidbody;
-    private new BoxCollider2D collider;
-    private AudioSource audioSource;
+    //private new BoxCollider2D collider;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
 
     public delegate void ReachEndAction();
     public static event ReachEndAction OnReachedEnd;
 
-	void Start ()
+	void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
-        audioSource = GetComponent<AudioSource>();
+        //collider = GetComponent<BoxCollider2D>();
         initialPosition = transform.position;
         Mathf.Clamp(speed, 0.0f, maxSpeed);
+        if (initOnStart) InitVelocity();
 	}
 
     public void Reset()
@@ -59,9 +56,6 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            audioSource.clip = soundHitPlayer;
-            audioSource.Play();
-            
             // Assume the ball and the pad have the same mass
             // A momentum conservation law holds
             // 
@@ -84,26 +78,13 @@ public class BallController : MonoBehaviour
 
             rigidbody.velocity = new Vector2(x, y);
         }
-        
-        if (collision.gameObject.tag == "WallNormal")
-        {
-            audioSource.clip = soundHitWall;
-            audioSource.Play();
-        }
-
-        if (collision.gameObject.tag == "WallEnd" && OnReachedEnd != null)
+    }
+    
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "WallEnd" && OnReachedEnd != null)
         {
             OnReachedEnd();
         }
-    }
-
-    bool CheckHitHorizontalEdge(Collision2D collision)
-    {
-        Bounds ball_bounds = collider.bounds;
-        Bounds pad_bounds = collision.collider.bounds;
-        return !(
-            ball_bounds.max.y <= pad_bounds.min.y ||
-            ball_bounds.min.y >= pad_bounds.max.y
-        );
     }
 }
