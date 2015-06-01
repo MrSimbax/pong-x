@@ -6,9 +6,10 @@ public class BallController : MonoBehaviour
 {
     [Range(0.0f, 1000.0f)] public float speed;
     [Range(0.0f, 1000.0f)] public float maxSpeed;
+    public bool initOnStart;
 
     private new Rigidbody2D rigidbody;
-    private new BoxCollider2D collider;
+    //private new BoxCollider2D collider;
     private Vector2 initialPosition;
     private Vector2 previousVelocity;
 
@@ -18,9 +19,10 @@ public class BallController : MonoBehaviour
 	void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
+        //collider = GetComponent<BoxCollider2D>();
         initialPosition = transform.position;
         Mathf.Clamp(speed, 0.0f, maxSpeed);
+        if (initOnStart) InitVelocity();
 	}
 
     public void Reset()
