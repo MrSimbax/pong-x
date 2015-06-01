@@ -10,10 +10,18 @@ public class UIStart : MonoBehaviour {
     
     Text uiText;
     
-	void Start () {
+	void Start() {
 	   uiText = GetComponent<Text>();
        StartCoroutine(BlinkText());
 	}
+    
+    void Update()
+    {
+        if (Input.GetButtonDown("Start"))
+        {
+            Application.LoadLevel("thegame");
+        }
+    }
 	
 	void HideText()
     {
