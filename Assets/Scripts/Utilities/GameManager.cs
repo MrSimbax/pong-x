@@ -111,14 +111,12 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0.0f;
-        Debug.Log("Pause");
         gamestate = Gamestate.PAUSED;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1.0f;
-        Debug.Log("Resume");
         gamestate = Gamestate.PLAYING;
     }
 
