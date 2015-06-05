@@ -21,7 +21,7 @@ public class UIWinner : MonoBehaviour {
         text.text = "";
         if (gameManager.gamestate == GameManager.Gamestate.WIN)
         {
-            text.text = gameManager.Winner.ToUpper() + " WINS!";
+            text.text = gameManager.referee.Winner.ToUpper() + " WINS!";
         }
     }
 }

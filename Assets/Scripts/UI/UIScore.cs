@@ -5,14 +5,14 @@ using UnityEngine.UI;
 public class UIScore : MonoBehaviour
 {
 
-    public PlayerController player;
+    public PlayerScore score;
 
     Text text;
 	
     void Start()
     {
         text = GetComponent<Text>();
-        if (player == null)
+        if (score == null)
         {
             throw new MissingReferenceException();
         }
@@ -20,6 +20,6 @@ public class UIScore : MonoBehaviour
 
     void Update()
     {
-        text.text = "" + player.score;
+        text.text = "" + score.Score;
     }
 }

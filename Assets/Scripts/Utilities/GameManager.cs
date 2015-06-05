@@ -12,44 +12,29 @@ public class GameManager : MonoBehaviour
         WIN
     };
     
-    [HideInInspector]
-    public Gamestate gamestate;
+    [HideInInspector] public Gamestate gamestate;
 
     public string startButton;
     public string resetButton;
     public string exitButton;
     public string fullscreenButton;
 
-    public PlayerController playerLeft;
-    public PlayerController playerRight;
-    public BallController ball;
-    
-    public AudioClip soundWin;
-
-    [Range(1.0f, 98.0f)] public int winScore;
-
-    string _winner;
-    public string Winner
-    {
-        get
-        {
-            return _winner;
-        }
-    }
-    
-    private AudioSource audioSource;
+    public Referee referee;
 
     void Awake()
     {
-        gamestate = Gamestate.NOT_STARTED;
-        if (playerLeft == null ||
-            playerRight == null ||
-            ball == null ||
-            soundWin == null)
+        if (referee == null)
         {
             throw new MissingReferenceException();
         }
-        audioSource = GetComponent<AudioSource>();
+    }
+
+    void Start()
+    {
+        referee.Reset();
+        referee.OnEnd += EndGame;
+        referee.OnGoal += DoAfterGoal;
+        gamestate = Gamestate.NOT_STARTED;
     }
 
     void Update()
@@ -76,36 +61,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Goal()
-    {
-        BallController.OnReachedEnd -= Goal;
-        
-        audioSource.clip = soundWin;
-        audioSource.Play();
-
-        if (ball.transform.position.x < playerLeft.transform.position.x)
-        {
-            playerRight.score += 1;
-        }
-        else
-        {
-            playerLeft.score += 1;
-        }
-
-        if (playerLeft.score >= winScore || playerRight.score >= winScore)
-        {
-            EndGame();
-            return;
-        }
-
-        ball.Reset();
-        gamestate = Gamestate.NOT_STARTED;
-    }
-
     void StartGame()
     {
-        ball.InitVelocity();
-        BallController.OnReachedEnd += Goal;
+        referee.StartRound();
     }
 
     public void PauseGame()
@@ -122,17 +80,19 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        ResumeGame();
-        ball.Reset();
-        playerLeft.Reset();
-        playerRight.Reset();
+        Time.timeScale = 1.0f;
+        referee.Reset();
+        gamestate = Gamestate.NOT_STARTED;
+    }
+
+    void DoAfterGoal()
+    {
         gamestate = Gamestate.NOT_STARTED;
     }
 
     void EndGame()
     {
         PauseGame();
-        _winner = (playerLeft.score > playerRight.score) ? "Left player" : "Right player";
         gamestate = Gamestate.WIN;
     }
 

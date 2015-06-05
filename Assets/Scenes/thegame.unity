@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce33131348ac184495bea2d67afb376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 453627714}
+  score: {fileID: 453627715}
 --- !u!1 &161093034
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +902,7 @@ GameObject:
   - 61: {fileID: 453627710}
   - 50: {fileID: 453627713}
   - 114: {fileID: 453627714}
+  - 114: {fileID: 453627715}
   m_Layer: 10
   m_Name: PlayerLeft
   m_TagString: Player
@@ -988,7 +989,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 164
   axis: VerticalLeft
-  score: 0
+--- !u!114 &453627715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 453627709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43358674107e69e489f5738976d83a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &604706284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce33131348ac184495bea2d67afb376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1647178130}
+  score: {fileID: 1647178131}
 --- !u!1 &1591718621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,6 +1949,7 @@ GameObject:
   - 4: {fileID: 1604674852}
   - 114: {fileID: 1604674851}
   - 82: {fileID: 1604674853}
+  - 114: {fileID: 1604674854}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1961,11 +1973,7 @@ MonoBehaviour:
   resetButton: Reset
   exitButton: Exit
   fullscreenButton: Fullscreen
-  playerLeft: {fileID: 453627714}
-  playerRight: {fileID: 1647178130}
-  ball: {fileID: 1236433427}
-  soundWin: {fileID: 8300000, guid: 240151a8db524d744a295e6c873b5976, type: 3}
-  winScore: 11
+  referee: {fileID: 1604674854}
 --- !u!4 &1604674852
 Transform:
   m_ObjectHideFlags: 0
@@ -2047,6 +2055,24 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1604674854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1604674850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80113a17d780d3742b9ff88e35a8f893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLeft: {fileID: 453627714}
+  playerRight: {fileID: 1647178130}
+  ball: {fileID: 1236433427}
+  soundGoal: {fileID: 8300000, guid: 240151a8db524d744a295e6c873b5976, type: 3}
+  winScore: 11
+  scoreLeft: {fileID: 453627715}
+  scoreRight: {fileID: 1647178131}
 --- !u!1 &1625608053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2237,7 @@ GameObject:
   - 61: {fileID: 1647178127}
   - 50: {fileID: 1647178129}
   - 114: {fileID: 1647178130}
+  - 114: {fileID: 1647178131}
   m_Layer: 10
   m_Name: PlayerRight
   m_TagString: Player
@@ -2297,7 +2324,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 164
   axis: VerticalRight
-  score: 0
+--- !u!114 &1647178131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1647178125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43358674107e69e489f5738976d83a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810522507
 GameObject:
   m_ObjectHideFlags: 0

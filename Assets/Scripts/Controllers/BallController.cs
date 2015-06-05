@@ -13,7 +13,7 @@ public class BallController : MonoBehaviour
     Vector2 initialPosition;
 
     public delegate void ReachEndAction();
-    public static event ReachEndAction OnReachedEnd;
+    public event ReachEndAction OnReachedEnd;
 
     void Awake()
     {
