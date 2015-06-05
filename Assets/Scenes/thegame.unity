@@ -1380,6 +1380,7 @@ GameObject:
   - 114: {fileID: 1236433427}
   - 82: {fileID: 1236433428}
   - 114: {fileID: 1236433429}
+  - 114: {fileID: 1236433430}
   m_Layer: 10
   m_Name: Ball
   m_TagString: Untagged
@@ -1464,8 +1465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f18f1997b94264b9122ed4911e0c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 64
-  maxSpeed: 128
+  initialSpeed: 60
+  initOnStart: 0
 --- !u!82 &1236433428
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1551,6 +1552,18 @@ MonoBehaviour:
     tag: Player
   - clip: {fileID: 8300000, guid: 936682587dcf5e54188d5b8b7160097b, type: 3}
     tag: WallNormal
+--- !u!114 &1236433430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236433422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb20b62b9b9e65542b634a6cd39099a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 80
 --- !u!1 &1265029846
 GameObject:
   m_ObjectHideFlags: 0
