@@ -13,8 +13,8 @@ public class HitSoundPlayer : MonoBehaviour
     
     public HitSound[] hitSounds;
     
-    private AudioSource audioSource;
-    private Dictionary<string, AudioClip> sounds;
+    AudioSource audioSource;
+    Dictionary<string, AudioClip> sounds;
     
     void Start()
     {

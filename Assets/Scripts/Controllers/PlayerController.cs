@@ -8,10 +8,10 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public int score;
 
-    private new Rigidbody2D rigidbody;
-    private Vector2 initialPosition;
-    private Vector2 previousVelocity;
-    private bool paused;
+    new Rigidbody2D rigidbody;
+    Vector2 initialPosition;
+    Vector2 previousVelocity;
+    bool paused;
 
     public void Reset()
     {

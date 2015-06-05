@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
 
     [Range(1.0f, 98.0f)] public int winScore;
 
-    private string _winner;
-    public string winner
+    string _winner;
+    public string Winner
     {
         get
         {
@@ -147,14 +147,7 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         PauseGame();
-        if (playerLeft.score > playerRight.score)
-        {
-            _winner = "Left player";
-        }
-        else
-        {
-            _winner = "Right player";
-        }
+        _winner = (playerLeft.score > playerRight.score) ? "Left player" : "Right player";
         gamestate = Gamestate.WIN;
     }
 

@@ -5,7 +5,7 @@ public class UIWinner : MonoBehaviour {
 
     public GameManager gameManager;
 
-    private Text text;
+    Text text;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class UIWinner : MonoBehaviour {
         text.text = "";
         if (gameManager.gamestate == GameManager.Gamestate.WIN)
         {
-            text.text = gameManager.winner.ToUpper() + " WINS!";
+            text.text = gameManager.Winner.ToUpper() + " WINS!";
         }
     }
 }

@@ -7,7 +7,7 @@ public class UIScore : MonoBehaviour
 
     public PlayerController player;
 
-    private Text text;
+    Text text;
 	
     void Start()
     {
