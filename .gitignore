@@ -30,3 +30,6 @@ Thumbs.db
 # --------------------[ Other ]------------------------ #
 [Bb]uild/
 [Bb]in/
+
+*.sublime-project
+*.sublime-workspace
