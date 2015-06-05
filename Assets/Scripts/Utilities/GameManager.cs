@@ -39,18 +39,19 @@ public class GameManager : MonoBehaviour
     
     private AudioSource audioSource;
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         gamestate = Gamestate.NOT_STARTED;
-        if (playerLeft == null || playerRight == null || ball == null || soundWin == null)
+        if (playerLeft == null ||
+            playerRight == null ||
+            ball == null ||
+            soundWin == null)
         {
             throw new MissingReferenceException();
         }
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown(fullscreenButton))
@@ -73,25 +74,6 @@ public class GameManager : MonoBehaviour
             StartGame();
             gamestate = Gamestate.PLAYING;
         }
-    }
-
-    void StartGame()
-    {
-        ball.InitVelocity();
-        BallController.OnReachedEnd += Goal;
-    }
-
-    void ResetGame()
-    {
-        ball.Reset();
-        playerLeft.Reset();
-        playerRight.Reset();
-        gamestate = Gamestate.NOT_STARTED;
-    }
-
-    void ExitGame()
-    {
-        Application.Quit();
     }
 
     void Goal()
@@ -120,24 +102,29 @@ public class GameManager : MonoBehaviour
         gamestate = Gamestate.NOT_STARTED;
     }
 
+    void StartGame()
+    {
+        ball.InitVelocity();
+        BallController.OnReachedEnd += Goal;
+    }
+
     public void PauseGame()
     {
-        ball.Pause();
-        playerLeft.Pause();
-        playerRight.Pause();
+        Time.timeScale = 0.0f;
+        Debug.Log("Pause");
         gamestate = Gamestate.PAUSED;
     }
 
     public void ResumeGame()
     {
-        ball.Resume();
-        playerLeft.Resume();
-        playerRight.Resume();
+        Time.timeScale = 1.0f;
+        Debug.Log("Resume");
         gamestate = Gamestate.PLAYING;
     }
 
-    public void RestartGame()
+    public void ResetGame()
     {
+        ResumeGame();
         ball.Reset();
         playerLeft.Reset();
         playerRight.Reset();
@@ -149,6 +136,11 @@ public class GameManager : MonoBehaviour
         PauseGame();
         _winner = (playerLeft.score > playerRight.score) ? "Left player" : "Right player";
         gamestate = Gamestate.WIN;
+    }
+
+    void ExitGame()
+    {
+        Application.Quit();
     }
 
     void SwitchFullScreen()
