@@ -16,7 +16,16 @@ ExportedObj/
 *.user
 *.unityproj
 *.booproj
- 
+
+# --------------------[ UnityVS ]---------------------- #
+
+Assets/Scripts/UnityVS/
+
+# --------------------[ Sublime Text ]----------------- #
+
+*.sublime-project
+*.sublime-workspace
+
 # -------------[ OS generated ]------------------------ #
 .DS_Store
 .DS_Store?
@@ -30,6 +39,3 @@ Thumbs.db
 # --------------------[ Other ]------------------------ #
 [Bb]uild/
 [Bb]in/
-
-*.sublime-project
-*.sublime-workspace
