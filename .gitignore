@@ -20,6 +20,9 @@ ExportedObj/
 # --------------------[ UnityVS ]---------------------- #
 
 Assets/Scripts/UnityVS/
+Assets/UnityVS/
+UnityVS/
+UnityVS*
 
 # --------------------[ Sublime Text ]----------------- #
 
