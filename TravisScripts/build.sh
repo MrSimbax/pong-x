@@ -53,11 +53,11 @@ rm ./$project-win/*.pdb
 echo 'Packing Windows build...'
 zip -r $project-win.zip ./$project-win
 
-echo 'Packing OSX build...'
-zip -r $project-osx.zip ./$project-lin
-
 echo 'Packing Linux build...'
-zip -r $project-lin.zip ./$project-osx
+zip -r $project-lin.zip ./$project-lin
+
+echo 'Packing OS X build...'
+zip -r $project-osx.zip ./$project-osx
 
 cd ..
 echo 'Zip files should be ready to deploy.'
